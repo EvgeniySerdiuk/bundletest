@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using Project.Scripts.StateMachine.SpecificStates;
 using UnityEngine;
 using VContainer.Unity;
 
 namespace Project.Scripts.StateMachine
 {
-    public class StateMachine : IPostInitializable, ITickable, IDisposable
+    public class ProjectStateMachine : IPostInitializable, ITickable, IDisposable
     {
         private readonly StatesFactory _statesFactory;
         private readonly CancellationTokenSource _cancellationTokenSource;
 
         private IState _activeState;
 
-        public StateMachine(StatesFactory statesFactory)
+        public ProjectStateMachine(StatesFactory statesFactory)
         {
             _statesFactory = statesFactory;
             _cancellationTokenSource = new CancellationTokenSource();
@@ -24,7 +24,7 @@ namespace Project.Scripts.StateMachine
         {
             try
             {
-               // EnterState(_statesFactory.CreateState<StartMatchState>(), _cancellationTokenSource.Token);
+                EnterState(_statesFactory.CreateState<LoadGameState>(), _cancellationTokenSource.Token).Forget();
             }
             catch (OperationCanceledException ex)
             {
@@ -61,7 +61,7 @@ namespace Project.Scripts.StateMachine
                 {
                     try
                     {
-                        ExitState(_activeState, _cancellationTokenSource.Token);
+                        ExitState(_activeState, _cancellationTokenSource.Token).Forget();
                     }
                     catch (OperationCanceledException ex)
                     {
@@ -73,7 +73,8 @@ namespace Project.Scripts.StateMachine
 
                 try
                 {
-                    EnterState(_statesFactory.CreateState(_activeState.NextState), _cancellationTokenSource.Token);
+                    EnterState(_statesFactory.CreateState(_activeState.NextState), _cancellationTokenSource.Token)
+                        .Forget();
                 }
                 catch (OperationCanceledException ex)
                 {

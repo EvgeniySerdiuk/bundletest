@@ -1,4 +1,5 @@
 ﻿using System;
+using Project.Scripts.StateMachine.SpecificStates;
 using VContainer;
 
 namespace Project.Scripts.StateMachine
@@ -24,9 +25,8 @@ namespace Project.Scripts.StateMachine
 
         public static void RegisterStates(IContainerBuilder builder)
         {
-           // builder.Register<StartMatchState>(Lifetime.Transient);
-           // builder.Register<MatchState>(Lifetime.Transient);
-           // builder.Register<RestartMatchState>(Lifetime.Transient);
+            builder.Register<LoadGameState>(Lifetime.Transient);
+            builder.Register<GameState>(Lifetime.Transient);
         }
     }
 }
