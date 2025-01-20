@@ -1,4 +1,5 @@
-﻿using Project.Scripts.LoaderScreen.Configs;
+﻿using Project.Scripts.AssetBundlesUtility;
+using Project.Scripts.LoaderScreen.Configs;
 using Project.Scripts.LoaderScreen.UIControllers;
 using Project.Scripts.StateMachine;
 using UnityEngine;
@@ -25,7 +26,9 @@ namespace Project.Scripts.Scopes
             });
             
             StatesFactory.RegisterStates(builder);
+            
             builder.Register<StatesFactory>(Lifetime.Scoped);
+            builder.Register<RemoteAssetBundleLoader>(Lifetime.Scoped);
         }
     }
 }

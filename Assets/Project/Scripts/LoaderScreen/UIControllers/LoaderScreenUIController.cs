@@ -1,4 +1,7 @@
-﻿using Project.Scripts.LoaderScreen.Configs;
+﻿using System.Threading;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
+using Project.Scripts.LoaderScreen.Configs;
 using Project.Scripts.LoaderScreen.UI;
 using UnityEngine;
 using VContainer.Unity;
@@ -19,10 +22,13 @@ namespace Project.Scripts.LoaderScreen.UIControllers
         {
             _loaderScreenUI = Object.Instantiate(_loaderScreenData.LoaderScreenUI);
             _loaderScreenUI.ProgressBar.Construct(_loaderScreenData.LoadingTime);
-            
+
             _loaderScreenData = null;
         }
-        
-        
+
+        public async UniTask StartLoading(CancellationToken token)
+        {
+            await _loaderScreenUI.ProgressBar.StartFillingBar().AsyncWaitForCompletion();
+        }
     }
 }

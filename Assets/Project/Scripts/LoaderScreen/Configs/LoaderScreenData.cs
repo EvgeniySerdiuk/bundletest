@@ -8,5 +8,7 @@ namespace Project.Scripts.LoaderScreen.Configs
     {
         [field: SerializeField] public LoaderScreenUI LoaderScreenUI { get; private set; }
         [field: SerializeField] public float LoadingTime { get; private set; }
+        
+        [field: SerializeField] public string LoadingBundleName { get; private set; } 
     }
 }
