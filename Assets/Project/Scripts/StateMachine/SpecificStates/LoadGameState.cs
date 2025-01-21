@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Threading;
+using BundleTest.Project.Scripts.MainScreen;
+using BundleTest.Project.Scripts.MainScreen.Counter;
+using BundleTest.Project.Scripts.MainScreen.TittleText;
 using Cysharp.Threading.Tasks;
-using Project.Scripts.AssetBundlesUtility;
-using Project.Scripts.LoaderScreen.Configs;
 using Project.Scripts.LoaderScreen.UIControllers;
+using Project.Scripts.MainScreen.UIControllers;
+using UnityEngine;
 
 namespace Project.Scripts.StateMachine.SpecificStates
 {
@@ -11,30 +14,43 @@ namespace Project.Scripts.StateMachine.SpecificStates
     {
         public override Type NextState => typeof(GameState);
 
-        private readonly LoaderScreenData _loadingData;
+        private readonly MainScreenUIController _mainScreenUIController;
         private readonly LoaderScreenUIController _loaderScreenUIController;
-        private readonly RemoteAssetBundleLoader _remoteBundleLoader;
+        private readonly MainScreenButtonBgService _mainScreenButtonBgService;
+        private readonly MainScreenTitleTextService _mainScreenTitleTextService;
+        private readonly MainScreenCounterService _mainScreenCounterService;
 
-        public LoadGameState(LoaderScreenData loadingData, LoaderScreenUIController loaderScreenUIController,
-            RemoteAssetBundleLoader remoteBundleLoader)
+        public LoadGameState(LoaderScreenUIController loaderScreenUIController,
+            MainScreenButtonBgService mainScreenButtonBgService, MainScreenTitleTextService mainScreenTitleTextService, MainScreenCounterService mainScreenCounterService, MainScreenUIController mainScreenUIController)
         {
-            _loadingData = loadingData;
             _loaderScreenUIController = loaderScreenUIController;
-            _remoteBundleLoader = remoteBundleLoader;
+            _mainScreenButtonBgService = mainScreenButtonBgService;
+            _mainScreenTitleTextService = mainScreenTitleTextService;
+            _mainScreenCounterService = mainScreenCounterService;
+            _mainScreenUIController = mainScreenUIController;
         }
 
-        public override async UniTask Enter(CancellationToken cancellationToken)
+        public override async UniTask Enter(CancellationToken token)
         {
             await UniTask.WhenAll
             (
-                _remoteBundleLoader.DownloadAsset(_loadingData.LoadingBundleName),
-                _loaderScreenUIController.StartLoading(cancellationToken)
+                _loaderScreenUIController.StartLoading(token),
+                _mainScreenButtonBgService.LoadButtonBg(token),
+                _mainScreenTitleTextService.LoadTitleText(token),
+                _mainScreenCounterService.LoadValue(token)
             );
+            
+            Debug.Log("Load button bg: " + _mainScreenButtonBgService.BackgroundSprite.name);
+            Debug.Log("Load TITLE: " + _mainScreenTitleTextService.TitleText);
+            Debug.Log("Load Counter bg: " + _mainScreenCounterService.CurrentValue);
+            
+            Complete();
         }
 
         public override UniTask Exit(CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            _mainScreenUIController.CreateScreen();
+            return UniTask.CompletedTask;
         }
     }
 }

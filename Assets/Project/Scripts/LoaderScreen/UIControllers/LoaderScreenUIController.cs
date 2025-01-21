@@ -11,24 +11,29 @@ namespace Project.Scripts.LoaderScreen.UIControllers
     public class LoaderScreenUIController : IInitializable
     {
         private LoaderScreenUI _loaderScreenUI;
-        private LoaderScreenData _loaderScreenData;
+        private ScreenContainer _screenContainer;
 
-        public LoaderScreenUIController(LoaderScreenData loaderScreenData)
+        public LoaderScreenUIController(ScreenContainer screenContainer)
         {
-            _loaderScreenData = loaderScreenData;
+            _screenContainer = screenContainer;
         }
 
         public void Initialize()
         {
-            _loaderScreenUI = Object.Instantiate(_loaderScreenData.LoaderScreenUI);
-            _loaderScreenUI.ProgressBar.Construct(_loaderScreenData.LoadingTime);
+            _loaderScreenUI = Object.Instantiate(_screenContainer.LoaderScreenUI);
+            _loaderScreenUI.ProgressBar.Construct(_screenContainer.LoadingTime);
 
-            _loaderScreenData = null;
+            _screenContainer = null;
         }
 
         public async UniTask StartLoading(CancellationToken token)
         {
-            await _loaderScreenUI.ProgressBar.StartFillingBar().AsyncWaitForCompletion();
+            await _loaderScreenUI.ProgressBar.StartFillingBar(token);
+        }
+
+        public void CloseScreen()
+        {
+            Object.Destroy(_loaderScreenUI.gameObject);
         }
     }
 }

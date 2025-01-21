@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: LoaderScreenData
   m_EditorClassIdentifier: 
   <LoaderScreenUI>k__BackingField: {fileID: 8967192072638249885, guid: 214b7e6829dad9b449115f886beb2baf, type: 3}
+  <MainScreenUI>k__BackingField: {fileID: 3978842459636864201, guid: 78d63d85f0542e04cacdc238e469af46, type: 3}
   <LoadingTime>k__BackingField: 2
-  <LoadingBundleName>k__BackingField: buttonbg

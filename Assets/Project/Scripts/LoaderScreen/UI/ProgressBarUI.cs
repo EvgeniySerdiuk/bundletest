@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -18,11 +19,11 @@ namespace Project.Scripts.LoaderScreen.UI
             _loadingTime = loadingTime;
         }
         
-        public Tween StartFillingBar(Action onComplete = null)
+        public UniTask StartFillingBar(CancellationToken token)
         {
             var progressBarMsxSizeX = progressBar.sizeDelta.x;
             return filledImage.rectTransform.DOSizeDelta(new Vector2(progressBarMsxSizeX, filledImage.rectTransform.sizeDelta.y),
-                _loadingTime).OnComplete(() => onComplete?.Invoke());
+                _loadingTime).ToUniTask(cancellationToken: token);
         }
     }
 }

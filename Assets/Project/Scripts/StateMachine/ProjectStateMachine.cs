@@ -28,7 +28,7 @@ namespace Project.Scripts.StateMachine
             }
             catch (OperationCanceledException ex)
             {
-                Debug.Log($"[match.states] Enter state canceled");
+                Debug.Log($"[match.states] Enter state canceled " + ex);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Project.Scripts.StateMachine
                     }
                     catch (OperationCanceledException ex)
                     {
-                        Debug.Log($"[match.states] Exit state canceled");
+                        Debug.Log($"[match.states] Exit state canceled " + ex);
                     }
 
                     return;
@@ -78,7 +78,7 @@ namespace Project.Scripts.StateMachine
                 }
                 catch (OperationCanceledException ex)
                 {
-                    Debug.Log($"[match.states] Enter state canceled");
+                    Debug.Log($"[match.states] Enter state canceled " + ex);
                 }
             }
         }
