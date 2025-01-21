@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 260288283016428810}
   - component: {fileID: 30304433001852642}
   - component: {fileID: 4800145120965010554}
+  - component: {fileID: 8967192072638249885}
   m_Layer: 5
-  m_Name: LoadScreen
+  m_Name: LoaderScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,6 +104,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8967192072638249885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870498862809191274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7cacc08da4478b903880596dc069ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ProgressBar>k__BackingField: {fileID: 1803721072353807807}
 --- !u!1 &8649988840471615512
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,3 +302,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5019813111143658877, guid: ad423d9c81788674a9615980eadbd65f, type: 3}
   m_PrefabInstance: {fileID: 6043272638297376849}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1803721072353807807 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5392531345505551854, guid: ad423d9c81788674a9615980eadbd65f, type: 3}
+  m_PrefabInstance: {fileID: 6043272638297376849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19eeb9876e731f34eb196cd44c9ce4b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

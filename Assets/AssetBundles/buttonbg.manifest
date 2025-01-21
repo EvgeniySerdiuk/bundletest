@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.29f1
+CRC: 3345233554
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b9bf3c695ba38647f87568e666f09912
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9f349c36d7a6532f767333f9299b3e74
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 60236b8968a97c9bab5c5ea45fd9652f
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Project/Content/Textures/ButtonBg.png
+Dependencies: []
