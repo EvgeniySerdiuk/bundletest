@@ -8,11 +8,11 @@ namespace Project.Scripts.SaveLoad
 {
     public class SaveService
     {
-        public const string SaveFile = "save.json";
+        private const string SaveFile = "save.json";
 
-        public string SavePath => Path.Combine("saves", SaveFile);
-        public string SaveFilePath => Path.Combine(Application.persistentDataPath, SavePath);
-        public string SaveDirectory => Path.Combine(Application.persistentDataPath, "saves");
+        private string SavePath => Path.Combine("saves", SaveFile);
+        private string SaveFilePath => Path.Combine(Application.persistentDataPath, SavePath);
+        private string SaveDirectory => Path.Combine(Application.persistentDataPath, "saves");
 
         private readonly Dictionary<string, object> _saveEntries = new();
         private Dictionary<string, JObject> _loadedEntries;

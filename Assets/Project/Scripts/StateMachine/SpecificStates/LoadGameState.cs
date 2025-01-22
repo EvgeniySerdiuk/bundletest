@@ -21,7 +21,8 @@ namespace Project.Scripts.StateMachine.SpecificStates
         private readonly MainScreenCounterService _mainScreenCounterService;
 
         public LoadGameState(LoaderScreenUIController loaderScreenUIController,
-            MainScreenButtonBgService mainScreenButtonBgService, MainScreenTitleTextService mainScreenTitleTextService, MainScreenCounterService mainScreenCounterService, MainScreenUIController mainScreenUIController)
+            MainScreenButtonBgService mainScreenButtonBgService, MainScreenTitleTextService mainScreenTitleTextService,
+            MainScreenCounterService mainScreenCounterService, MainScreenUIController mainScreenUIController)
         {
             _loaderScreenUIController = loaderScreenUIController;
             _mainScreenButtonBgService = mainScreenButtonBgService;
@@ -39,11 +40,11 @@ namespace Project.Scripts.StateMachine.SpecificStates
                 _mainScreenTitleTextService.LoadTitleText(token),
                 _mainScreenCounterService.LoadValue(token)
             );
-            
-            Debug.Log("Load button bg: " + _mainScreenButtonBgService.BackgroundSprite.name);
-            Debug.Log("Load TITLE: " + _mainScreenTitleTextService.TitleText);
-            Debug.Log("Load Counter bg: " + _mainScreenCounterService.CurrentValue);
-            
+
+            Debug.Log("<color=yellow>Load button bg:</color> " + _mainScreenButtonBgService.BackgroundSprite.name);
+            Debug.Log("<color=yellow>Load TITLE:</color> " + _mainScreenTitleTextService.TitleText);
+            Debug.Log("<color=yellow>Load Counter bg:</color> " + _mainScreenCounterService.CurrentValue);
+
             Complete();
         }
 

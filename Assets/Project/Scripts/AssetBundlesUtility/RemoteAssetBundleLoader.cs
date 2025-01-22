@@ -17,10 +17,12 @@ namespace Project.Scripts.AssetBundlesUtility
                 using (UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(URL + name))
                 {
                     await request.SendWebRequest().ToUniTask(cancellationToken: token);
-                    
+
                     var bundle = DownloadHandlerAssetBundle.GetContent(request);
                     var asset = await bundle.LoadAssetAsync<T>(name).ToUniTask(cancellationToken: token);
-                    
+
+                    bundle.Unload(false);
+
                     return asset as T;
                 }
             }

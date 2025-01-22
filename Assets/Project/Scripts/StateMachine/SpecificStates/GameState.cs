@@ -24,7 +24,7 @@ namespace Project.Scripts.StateMachine.SpecificStates
 
         public override UniTask Exit(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return UniTask.CompletedTask;
         }
     }
 }

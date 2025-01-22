@@ -15,10 +15,10 @@ using VContainer.Unity;
 
 namespace Project.Scripts.Scopes
 {
-    public class LoadScreenScope : LifetimeScope
+    public class GameScope : LifetimeScope
     {
-        [FormerlySerializedAs("loaderScreenData")] [SerializeField] private ScreenContainer screenContainer;
-        
+        [SerializeField] private ScreenContainer screenContainer;
+
         protected override void Configure(IContainerBuilder builder)
         {
             builder.UseEntryPoints(epBuilder =>
@@ -26,12 +26,12 @@ namespace Project.Scripts.Scopes
                 epBuilder.Add<ProjectStateMachine>().AsSelf();
                 epBuilder.Add<LoaderScreenUIController>().AsSelf();
             });
-            
+
             builder.UseComponents(cBuilder =>
             {
                 cBuilder.AddInstance(screenContainer);
             });
-            
+
             StatesFactory.RegisterStates(builder);
 
             builder.Register<SaveService>(Lifetime.Singleton);
@@ -42,7 +42,6 @@ namespace Project.Scripts.Scopes
             builder.Register<MainScreenButtonBgService>(Lifetime.Scoped);
             builder.Register<RemoteJsonLoader>(Lifetime.Scoped);
             builder.Register<MainScreenUIController>(Lifetime.Scoped);
-            
         }
     }
 }

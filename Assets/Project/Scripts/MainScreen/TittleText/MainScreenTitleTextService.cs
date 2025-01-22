@@ -9,11 +9,11 @@ namespace BundleTest.Project.Scripts.MainScreen.TittleText
     {
         public string Text;
     }
-    
+
     public class MainScreenTitleTextService
     {
         public string TitleText { get; private set; }
-        
+
         private readonly RemoteJsonLoader _remoteJsonLoader;
 
         public MainScreenTitleTextService(RemoteJsonLoader remoteJsonLoader)

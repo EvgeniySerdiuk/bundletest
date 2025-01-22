@@ -9,7 +9,7 @@ namespace Project.Scripts.LoaderScreen.Configs
     {
         [field: SerializeField] public LoaderScreenUI LoaderScreenUI { get; private set; }
         [field: SerializeField] public MainScreenUI MainScreenUI { get; private set; }
-        
+
         [field: SerializeField] public float LoadingTime { get; private set; }
     }
 }

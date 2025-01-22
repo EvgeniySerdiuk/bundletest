@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -18,11 +17,12 @@ namespace Project.Scripts.LoaderScreen.UI
         {
             _loadingTime = loadingTime;
         }
-        
+
         public UniTask StartFillingBar(CancellationToken token)
         {
             var progressBarMsxSizeX = progressBar.sizeDelta.x;
-            return filledImage.rectTransform.DOSizeDelta(new Vector2(progressBarMsxSizeX, filledImage.rectTransform.sizeDelta.y),
+            return filledImage.rectTransform.DOSizeDelta(
+                new Vector2(progressBarMsxSizeX, filledImage.rectTransform.sizeDelta.y),
                 _loadingTime).ToUniTask(cancellationToken: token);
         }
     }

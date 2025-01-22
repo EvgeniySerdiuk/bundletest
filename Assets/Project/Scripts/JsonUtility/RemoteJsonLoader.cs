@@ -14,13 +14,20 @@ namespace BundleTest.Project.Scripts.JsonUtility
         public async UniTask<T> DownloadAsset<T>(string name, CancellationToken token)
         {
             try
-            { 
-                using (UnityWebRequest request = UnityWebRequest.Get(URL + name))
+            {
+                using (var request = UnityWebRequest.Get(URL + name))
                 {
-                    await request.SendWebRequest().ToUniTask(cancellationToken: token);
-                    var json = request.downloadHandler.text;
+                    await request.SendWebRequest().WithCancellation(token);
 
-                    return JsonConvert.DeserializeObject<T>(json);
+                    if (request.result == UnityWebRequest.Result.Success)
+                    {
+                        var json = request.downloadHandler.text;
+                        return JsonConvert.DeserializeObject<T>(json);
+                    }
+                    else
+                    {
+                        Debug.LogError($"Error downloading asset: {request.error}");
+                    }
                 }
             }
             catch (Exception e)
