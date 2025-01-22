@@ -35,18 +35,19 @@ namespace BundleTest.Project.Scripts.MainScreen.Counter
             }
 
             CurrentValue = loadModel.StartingNumber;
-        }
-
-        private void SaveValue()
-        {
-            var saveModel = new CounterStartValue { StartingNumber = CurrentValue };
-            _saveService.FlashChanges(SaveKey, saveModel);
+            SaveValue();
         }
 
         public void IncrementValue()
         {
             CurrentValue++;
             SaveValue();
+        }
+
+        private void SaveValue()
+        {
+            var saveModel = new CounterStartValue { StartingNumber = CurrentValue };
+            _saveService.FlashChanges(SaveKey, saveModel);
         }
     }
 }
